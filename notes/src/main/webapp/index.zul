@@ -1,0 +1,11 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="Notes"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/notebook.png"?>
+<?link  rel="stylesheet" type="text/css" href="css/style.css"?>
+<zk xmlns:h="native" style="padding-left: 0px; margin: 0px;">
+	<hlayout>
+		<include src="folders.zul" />
+		<include src="notes.zul" hflex="3"/>
+		<include src="note.zul" hflex="9"/>
+	</hlayout>
+</zk>

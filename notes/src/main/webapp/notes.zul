@@ -1,0 +1,61 @@
+<zk xmlns:h="native" style="padding-left: 0px; margin: 0px;">
+	<window style="padding: 0px; margin: 0px;" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('de.erdnute.notes.gui.NotesViewModel')">
+
+		<vlayout style="padding: 0px; margin: 0px;">
+
+			<!-- HEAD -->
+			<hlayout style="padding: 0px; margin: 0px;">
+				<hlayout hflex="7">
+					<label class="small-font" value="notes" />
+					<label class="small-font" value="@load(vm.folder.name)" />
+					<label class="small-font" style="color: blue" value="@load(vm.count)" />
+				</hlayout>
+				<button label="+" hflex="1" onClick="@command('addNote')"/>
+			</hlayout>
+
+			<!-- SEARCH -->
+			<hlayout>
+				<textbox hflex="7" value="@bind(vm.search)"
+					onChanging="@command('search', searchtext = event.value)" height="28px"
+					class="search" style="color: blue" />
+				<button style="margin-bottom: 4px;color: grey" label="X"
+					hflex="1" onClick="@command('clearSearchBox')" />
+			</hlayout>
+
+
+			<!-- LIST -->
+			<div>
+				<listbox activePage="@bind(vm.page)" mold="paging" pageSize="10"
+					pagingPosition="top" style="padding: 0px;margin: 0px;" class="noteslist"
+					model="@bind(vm.notes)" selectedItem="@bind(vm.selectedNote)"
+					onSelect="@global-command('noterefresh',note=vm.selectedNote)">
+					<listhead>
+						<listheader width="100%" />
+					</listhead>
+
+					<template name="model">
+						<listitem>
+							<listcell>
+								<vlayout style="padding: 0px;margin: 0px;">
+									<label vflex="1" value="@load(each.titleShort)"
+										style="padding: 0px;margin: 0px;font-size: small;font-weight: 600;" />
+									<hlayout>
+										<label tooltiptext="@load(each.modified)" vflex="1" value="@load(each.modifiedFormatted)"
+											style="padding: 0px;margin: 0px;font-size: xx-small;font-weight: 200;color: blue" />
+										<label vflex="1" value="@load(each.folder.name)"
+											style="padding: 0px;margin: 0px;font-size: xx-small;font-weight: 200;color: grey" />
+									</hlayout>
+								</vlayout>
+							</listcell>
+						</listitem>
+					</template>
+
+				</listbox>
+			</div>
+
+		</vlayout>
+
+
+	</window>
+</zk>

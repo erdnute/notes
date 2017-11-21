@@ -1,0 +1,64 @@
+<zk xmlns:h="native" style="padding-left: 0px; margin: 0px;">
+	<window border="normal" hflex="3" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('de.erdnute.notes.gui.NoteViewModel')">
+		<div class="note">
+			<tabbox vflex="1">
+				<tabs>
+					<tab label="Note" />
+					<tab label="Links (2)" />
+					<tab label="Images (3)" />
+				</tabs>
+				<tabpanels>
+					<!-- TEXT -->
+					<tabpanel>
+						<vlayout class="compact">
+							<hlayout>
+								<textbox onOK="@command('titleChanged')" onChange="@command('titleChanged')"
+									style="color: grey;" readonly="@bind(vm.titleReadonly)" class="compact editor"
+									hflex="8" height="33px" value="@bind(vm.title)" />
+								<textbox onOK="@command('titleChanged')" onChange="@command('titleChanged')"
+									style="color: grey;" class="compact editor"
+									hflex="1" height="33px" value="@bind(vm.titlePostfix)" />
+							</hlayout>
+
+							<textbox value="@bind(vm.note.text)" onChanging="@command('changed', text = event.value)"
+								class="editor" rows="200" hflex="1" vflex="1" focus="@bind(vm.textfocus)" />
+						</vlayout>
+					</tabpanel>
+
+					<!-- LINKS -->
+					<tabpanel>
+						<vlayout class="links" style="padding: 0px;margin: 0px;">
+							<toolbarbutton target="_blank" label="http://www.heise.de"
+								href="http://www.heise.de"></toolbarbutton>
+							<toolbarbutton target="_blank" label="heise"
+								href="http://www.heise.de"></toolbarbutton>
+							<toolbarbutton target="_blank"
+								label="http://www.lwl.org/hier/und/dort" href="http://www.heise.de"></toolbarbutton>
+							<toolbarbutton target="_blank" label="nochwas"
+								href="http://www.heise.de"></toolbarbutton>
+
+
+						</vlayout>
+					</tabpanel>
+
+					<!-- IMAGES -->
+					<tabpanel>
+						<h:a href="images/a.png" target="_blank">
+							<image src="images/a.png" width="200px" />
+						</h:a>
+						<h:a href="images/b.png" target="_blank">
+							<image src="images/b.png" width="200px" />
+						</h:a>
+						<h:a href="images/c.png" target="_blank">
+							<image src="images/c.png" width="200px" />
+						</h:a>
+
+
+
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+		</div>
+	</window>
+</zk>

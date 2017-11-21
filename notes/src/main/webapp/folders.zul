@@ -1,0 +1,39 @@
+<window width="130px" style="padding: 0px; margin: 0px;" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('de.erdnute.notes.gui.FolderViewModel')">
+
+
+	<vlayout style="padding: 0px; margin: 0px;">
+
+		<hlayout style="padding: 0px; margin: 0px;">
+			<image src="@load(vm.color eq 'red'?'/images/notebook.png':'/images/notes.png')" width="16px" popup="options"/>
+			<label class="small-font" value="folders" hflex="5" />
+			<button label="+" hflex="1" />
+		</hlayout>
+		
+		<popup id="options">
+			<include src="options.zul" />				
+		</popup>
+
+		<div>
+
+			<listbox model="@bind(vm.folders)" selectedItem="@bind(vm.selectedFolder)"
+				class="tagslist"
+				onSelect="@global-command('folderrefresh',folder=vm.selectedFolder)">
+				<listhead>
+					<listheader width="80%" />
+					<listheader width="20%" />
+				</listhead>
+
+				<template name="model">
+					<listitem>
+						<listcell label="@load(each.name)" />
+						<listcell label="@load(each.count)" />
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+
+	</vlayout>
+
+
+</window>

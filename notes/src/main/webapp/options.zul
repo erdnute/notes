@@ -1,0 +1,17 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns:h="native" style="padding-left: 0px; margin: 0px;">
+
+	<window width="400px" height="400px" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('de.erdnute.notes.gui.OptionsViewModel')">
+		<div style="padding: 10px;">
+		<vlayout>
+			 <checkbox checked="false" id="cb" label="Testdaten" onCheck="@command('testdaten',v=cb.checked)" />
+			 <button label="Reload" onClick="@command('reload')"/>
+		</vlayout>
+		</div>
+
+
+	</window>
+
+
+</zk>
